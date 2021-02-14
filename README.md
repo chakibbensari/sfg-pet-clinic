@@ -1,2 +1,3 @@
 # sfg-pet-clinic
-Spring Framework  Pet Clinic Project
+
+Spring Framework Pet Clinic Project
