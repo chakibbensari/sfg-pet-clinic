@@ -36,7 +36,7 @@
     </build>
     <scm>
         <developerConnection>scm:git:https://github.com/chakibbensari/sfg-pet-clinic.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
 </project>
