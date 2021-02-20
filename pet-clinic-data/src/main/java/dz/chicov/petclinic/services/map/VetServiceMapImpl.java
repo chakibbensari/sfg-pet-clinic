@@ -1,6 +1,7 @@
-package dz.chicov.petclinic.services;
+package dz.chicov.petclinic.services.map;
 
 import dz.chicov.petclinic.model.Vet;
+import dz.chicov.petclinic.services.VetService;
 
 import java.util.Set;
 import java.util.stream.Collectors;

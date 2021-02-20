@@ -1,4 +1,4 @@
-package dz.chicov.petclinic.services;
+package dz.chicov.petclinic.services.map;
 
 import java.util.HashMap;
 import java.util.HashSet;

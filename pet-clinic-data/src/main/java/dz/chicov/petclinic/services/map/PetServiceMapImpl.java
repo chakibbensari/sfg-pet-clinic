@@ -1,8 +1,9 @@
-package dz.chicov.petclinic.services;
+package dz.chicov.petclinic.services.map;
 
 import dz.chicov.petclinic.model.Pet;
+import dz.chicov.petclinic.services.CRUDService;
 
-public class PetServiceMapImpl extends AbstractServiceMap<Pet, Long> implements CRUDService<Pet, Long>{
+public class PetServiceMapImpl extends AbstractServiceMap<Pet, Long> implements CRUDService<Pet, Long> {
     @Override
     public Pet findById(Long id) {
         return super.findById(id);

@@ -1,11 +1,12 @@
-package dz.chicov.petclinic.services;
+package dz.chicov.petclinic.services.map;
 
 import dz.chicov.petclinic.model.Owner;
+import dz.chicov.petclinic.services.OwnerService;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class OwnerServiceMapImpl extends AbstractServiceMap<Owner, Long> implements  OwnerService{
+public class OwnerServiceMapImpl extends AbstractServiceMap<Owner, Long> implements OwnerService {
 
     @Override
     public Set<Owner> findByFirstName(String firstName) {
