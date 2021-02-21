@@ -36,6 +36,6 @@ public class VetServiceMapImpl extends AbstractServiceMap<Vet, Long> implements 
 
     @Override
     public Set<Vet> findByFirstName(String firstName){
-        return super.list.values().stream().filter((Vet vet) -> vet.getFistName().equals(firstName)).collect(Collectors.toSet());
+        return super.list.values().stream().filter((Vet vet) -> vet.getFirstName().equals(firstName)).collect(Collectors.toSet());
     }
 }

@@ -52,7 +52,7 @@ public class LoadData implements CommandLineRunner{
 
     private void createPerson(Person person, Long id, String firstName, String lastName){
         person.setId(id);
-        person.setFistName(firstName);
+        person.setFirstName(firstName);
         person.setLastName(lastName);
 
 

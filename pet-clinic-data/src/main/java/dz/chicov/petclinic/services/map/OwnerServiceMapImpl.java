@@ -12,7 +12,7 @@ public class OwnerServiceMapImpl extends AbstractServiceMap<Owner, Long> impleme
 
     @Override
     public Set<Owner> findByFirstName(String firstName) {
-        return super.list.values().stream().filter((Owner o) -> o.getFistName().equals(firstName)).collect(Collectors.toSet());
+        return super.list.values().stream().filter((Owner o) -> o.getFirstName().equals(firstName)).collect(Collectors.toSet());
     }
 
     @Override
