@@ -1,13 +1,12 @@
 package dz.chicov.petclinic.services.map;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import dz.chicov.petclinic.model.BaseEntity;
 
-abstract public class AbstractServiceMap<T, I>{
+import java.util.*;
 
-    protected Map<I, T> list = new HashMap<I, T>();
+abstract public class AbstractServiceMap<T extends BaseEntity, I extends Long>{
+
+    protected Map<Long, T> list = new HashMap<Long, T>();
 
      public T findById(I id) {
         return list.get(id);
@@ -17,15 +16,29 @@ abstract public class AbstractServiceMap<T, I>{
         return new HashSet<T>(list.values());
     }
 
-    public T save(I id, T object) {
-        return list.put(id, object);
+    public T save(T object) {
+         if(object != null) {
+             object.setId(getNextId());
+             return list.put(object.getId(), object);
+         } else {
+             throw new RuntimeException("can't persist a null object.");
+         }
     }
 
-        public void delete(T object) {
+    public void delete(T object) {
         list.values().removeIf((T o) -> o.equals(object));
     }
 
     public void deleteById(I id) {
         list.remove(id);
+    }
+
+    private Long getNextId() {
+         try {
+             return Collections.max(list.keySet()) + 1;
+         } catch(NoSuchElementException e){
+             return 1L;
+         }
+
     }
 }
