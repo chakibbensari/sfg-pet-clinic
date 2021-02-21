@@ -2,10 +2,12 @@ package dz.chicov.petclinic.services.map;
 
 import dz.chicov.petclinic.model.Owner;
 import dz.chicov.petclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class OwnerServiceMapImpl extends AbstractServiceMap<Owner, Long> implements OwnerService {
 
     @Override

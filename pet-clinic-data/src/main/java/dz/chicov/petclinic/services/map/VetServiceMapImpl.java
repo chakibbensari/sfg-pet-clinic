@@ -2,10 +2,12 @@ package dz.chicov.petclinic.services.map;
 
 import dz.chicov.petclinic.model.Vet;
 import dz.chicov.petclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class VetServiceMapImpl extends AbstractServiceMap<Vet, Long> implements VetService {
     @Override
     public Vet findById(Long id) {
