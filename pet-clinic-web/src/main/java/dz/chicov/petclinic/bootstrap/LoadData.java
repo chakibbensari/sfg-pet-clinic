@@ -9,12 +9,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LoadDataOwner implements CommandLineRunner{
+public class LoadData implements CommandLineRunner{
 
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public LoadDataOwner(OwnerService ownerService, VetService vetService) {
+    public LoadData(OwnerService ownerService, VetService vetService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
     }
