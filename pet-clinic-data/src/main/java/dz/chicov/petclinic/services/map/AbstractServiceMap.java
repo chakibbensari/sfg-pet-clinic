@@ -6,14 +6,14 @@ import java.util.*;
 
 abstract public class AbstractServiceMap<T extends BaseEntity, I extends Long>{
 
-    protected Map<Long, T> list = new HashMap<Long, T>();
+    protected Map<Long, T> list = new HashMap<>();
 
      public T findById(I id) {
         return list.get(id);
     }
 
     public Set<T> findAll() {
-        return new HashSet<T>(list.values());
+        return new HashSet<>(list.values());
     }
 
     public T save(T object) {
