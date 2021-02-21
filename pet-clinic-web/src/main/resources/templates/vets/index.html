@@ -2,9 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>List of Vets</title>
+    <title>List of Owners</title>
 </head>
 <body>
-    <h1 th:text="'List of Vets'">List of Vets</h1>
+<!-- /* @thymesVar id="vet" type="dz.chicov.petclinic.model.Vet"*/-->
+<h1 th:text="'List of Vets'">List of Vets</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>FIRST NAME</th>
+        <th>LAST NAME</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each=" vet : ${vets}">
+        <td th:text="${ vet.id }"></td>
+        <td th:text="${ vet.firstName }"></td>
+        <td th:text="${ vet.lastName }"></td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>
