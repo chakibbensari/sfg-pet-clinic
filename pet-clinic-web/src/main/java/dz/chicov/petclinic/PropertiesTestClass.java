@@ -15,7 +15,7 @@ public class PropertiesTestClass {
 //    @Autowired
 //    private Environment env;
 
-    @Value("${default.path}")
+    @Value("${path}")
     private String path;
 
     @Bean
