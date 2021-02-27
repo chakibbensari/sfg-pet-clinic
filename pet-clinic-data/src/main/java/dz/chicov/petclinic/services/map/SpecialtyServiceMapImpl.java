@@ -1,11 +1,13 @@
 package dz.chicov.petclinic.services.map;
 
 import dz.chicov.petclinic.model.Specialty;
-import dz.chicov.petclinic.services.CRUDService;
+import dz.chicov.petclinic.services.SpecialtyService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class SpecialtyServiceMapImpl extends AbstractServiceMap<Specialty, Long> implements CRUDService<Specialty, Long> {
+@Service
+public class SpecialtyServiceMapImpl extends AbstractServiceMap<Specialty, Long> implements SpecialtyService {
 
     @Override
     public Set<Specialty> findAll() {
