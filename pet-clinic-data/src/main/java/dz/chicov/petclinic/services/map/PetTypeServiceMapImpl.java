@@ -1,0 +1,34 @@
+package dz.chicov.petclinic.services.map;
+
+import dz.chicov.petclinic.model.PetType;
+import dz.chicov.petclinic.services.PetTypeService;
+
+import java.util.Set;
+
+public class PetTypeServiceMapImpl extends AbstractServiceMap<PetType, Long> implements PetTypeService {
+
+    @Override
+    public PetType findById(Long id) {
+        return super.findById(id);
+    }
+
+    @Override
+    public Set<PetType> findAll() {
+        return super.findAll();
+    }
+
+    @Override
+    public PetType save(PetType petType) {
+        return super.save(petType);
+    }
+
+    @Override
+    public void delete(PetType petType) {
+        super.delete(petType);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        super.deleteById(id);
+    }
+}
