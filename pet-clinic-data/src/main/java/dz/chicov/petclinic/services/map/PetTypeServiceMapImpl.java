@@ -2,9 +2,11 @@ package dz.chicov.petclinic.services.map;
 
 import dz.chicov.petclinic.model.PetType;
 import dz.chicov.petclinic.services.PetTypeService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetTypeServiceMapImpl extends AbstractServiceMap<PetType, Long> implements PetTypeService {
 
     @Override
