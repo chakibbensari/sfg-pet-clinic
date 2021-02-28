@@ -39,13 +39,24 @@ public class LoadData implements CommandLineRunner{
 
         System.out.println(ownerService.findAll().size() + " Owners Loaded");
 
-//        Vet vet = createVet("Thompson", "John");
-//        Vet vet1 = createVet("Shwadrzmûller", "Maximilian");
-//
-//        vetService.save(vet1);
-//        vetService.save(vet);
-//        System.out.println(vetService.findAll().size() + " Vets Loaded");
+        Specialty radiology = createSpecialty("Radiology");
+        Specialty dentistry = createSpecialty("Dentistry");
 
+        Vet vet = createVet("BENSARI", "Chakib");
+        vet.addSpecialty(radiology);
+        Vet vet1 = createVet("DIBOUN", "Zoubir");
+        vet1.addSpecialty(dentistry);
+
+        vetService.save(vet1);
+        vetService.save(vet);
+        System.out.println(vetService.findAll().size() + " Vets Loaded");
+
+    }
+
+    private Specialty createSpecialty(String name){
+        Specialty specialty = new Specialty();
+        specialty.setName(name);
+        return specialty;
     }
 
     private PetType createPetType(String name){
