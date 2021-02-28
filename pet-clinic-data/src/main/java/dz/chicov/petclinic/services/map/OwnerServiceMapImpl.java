@@ -2,6 +2,7 @@ package dz.chicov.petclinic.services.map;
 
 import dz.chicov.petclinic.model.Owner;
 import dz.chicov.petclinic.services.OwnerService;
+import dz.chicov.petclinic.services.PetService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -9,6 +10,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class OwnerServiceMapImpl extends AbstractServiceMap<Owner, Long> implements OwnerService {
+
+    private PetService petService;
+
+    public OwnerServiceMapImpl(PetService petService) {
+        this.petService = petService;
+    }
 
     @Override
     public Set<Owner> findByFirstName(String firstName) {
@@ -22,6 +29,18 @@ public class OwnerServiceMapImpl extends AbstractServiceMap<Owner, Long> impleme
 
     @Override
     public Owner save(Owner owner) {
+        if(owner != null){
+            if(!owner.getPets().isEmpty()){
+                owner.getPets().forEach(pet ->{
+                    if(pet.getId() == null){
+                        petService.save(pet);
+                    }
+                });
+
+            }
+        } else {
+            throw new RuntimeException("Cannot save null Owner");
+        }
         return super.save(owner);
     }
 

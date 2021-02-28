@@ -1,15 +1,14 @@
 package dz.chicov.petclinic.services.map;
 
-import dz.chicov.petclinic.model.Owner;
 import dz.chicov.petclinic.model.Pet;
 import dz.chicov.petclinic.model.PetType;
 import dz.chicov.petclinic.services.CRUDService;
-import dz.chicov.petclinic.services.OwnerService;
+import dz.chicov.petclinic.services.PetService;
 import dz.chicov.petclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PetServiceMapImpl extends AbstractServiceMap<Pet, Long> implements CRUDService<Pet, Long> {
+public class PetServiceMapImpl extends AbstractServiceMap<Pet, Long> implements PetService {
 
     private PetTypeService petTypeService;
 
@@ -27,8 +26,7 @@ public class PetServiceMapImpl extends AbstractServiceMap<Pet, Long> implements 
         if(pet != null){
             if(pet.getPetType() != null){
                 if(pet.getPetType().getId() == null){
-                    PetType petType = petTypeService.save(pet.getPetType());
-                    pet.getPetType().setId(petType.getId());
+                    petTypeService.save(pet.getPetType());
                 }
             }
         } else {

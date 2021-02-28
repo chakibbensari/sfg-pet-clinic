@@ -1,12 +1,12 @@
 package dz.chicov.petclinic.bootstrap;
 
-import dz.chicov.petclinic.model.Owner;
-import dz.chicov.petclinic.model.Person;
-import dz.chicov.petclinic.model.Vet;
+import dz.chicov.petclinic.model.*;
 import dz.chicov.petclinic.services.OwnerService;
 import dz.chicov.petclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class LoadData implements CommandLineRunner{
@@ -22,36 +22,65 @@ public class LoadData implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
 
-        Owner owner = createOwner(1L, "Thompson", "John");
-        Owner owner1 = createOwner(2L, "Shwadrzmûller", "Maximilian");
-        Vet vet = createVet(1L, "Thompson", "John");
-        Vet vet1 = createVet(2L, "Shwadrzmûller", "Maximilian");
-        try {
-            ownerService.save(owner);
-            ownerService.save(owner1);
-            vetService.save(vet1);
-            vetService.save(vet);
-            System.out.println(ownerService.findAll().size() + " Owners Loaded");
-            System.out.println(vetService.findAll().size() + " Vets Loaded");
-        } catch (Exception e){
-            throw new Exception("Error during save", e);
-        }
+        PetType catPetType = createPetType("CAT");
+        PetType dogPetType = createPetType("DOG");
+
+        Owner owner = createOwner("Thompson", "John", "20 rue magnifique", "Paradise", "0610253658");
+        Owner owner1 = createOwner("Shwadrzmûller", "Maximilian", "65 rue awersome", "Paradise", "0613153658");
+
+        Pet cat = createPet(catPetType, owner);
+        Pet dog = createPet(dogPetType, owner1);
+
+        owner.getPets().add(cat);
+        owner1.getPets().add(dog);
+
+        ownerService.save(owner);
+        ownerService.save(owner1);
+
+        System.out.println(ownerService.findAll().size() + " Owners Loaded");
+
+//        Vet vet = createVet("Thompson", "John");
+//        Vet vet1 = createVet("Shwadrzmûller", "Maximilian");
+//
+//        vetService.save(vet1);
+//        vetService.save(vet);
+//        System.out.println(vetService.findAll().size() + " Vets Loaded");
+
     }
 
-    private Vet createVet(Long id, String firstName, String lastName){
+    private PetType createPetType(String name){
+        PetType petType = new PetType();
+        petType.setName(name);
+        return petType;
+    }
+
+    private Pet createPet(PetType petType, Owner owner){
+        Pet pet = new Pet();
+        pet.setPetType(petType);
+        pet.setOwner(owner);
+        pet.setBirthDate(LocalDate.of((int)(Math.random() * 21) + 2000,
+                                    (int)(Math.random() * 12) + 1,
+                                (int)(Math.random() * 30) + 1));
+        return pet;
+    }
+
+    private Vet createVet(String firstName, String lastName){
         Vet vet = new Vet();
-        createPerson(vet, id, firstName, lastName);
+        createPerson(vet, firstName, lastName);
         return vet;
     }
 
-    private Owner createOwner(Long id, String firstName, String lastName){
+    private Owner createOwner(String firstName, String lastName, String address, String city, String telephone){
         Owner owner = new Owner();
-        createPerson(owner, id, firstName, lastName);
+        owner.setAddress(address);
+        owner.setCity(city);
+        owner.setTelephone(telephone);
+        createPerson(owner,firstName, lastName);
         return owner;
     }
 
-    private void createPerson(Person person, Long id, String firstName, String lastName){
-        person.setId(id);
+    private void createPerson(Person person, String firstName, String lastName){
+
         person.setFirstName(firstName);
         person.setLastName(lastName);
 
