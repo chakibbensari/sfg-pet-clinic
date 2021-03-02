@@ -3,12 +3,14 @@ package dz.chicov.petclinic.services.map;
 import dz.chicov.petclinic.model.Owner;
 import dz.chicov.petclinic.services.OwnerService;
 import dz.chicov.petclinic.services.PetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerServiceMapImpl extends AbstractServiceMap<Owner, Long> implements OwnerService {
 
     private PetService petService;

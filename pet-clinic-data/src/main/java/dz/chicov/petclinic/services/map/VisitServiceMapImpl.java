@@ -2,11 +2,13 @@ package dz.chicov.petclinic.services.map;
 
 import dz.chicov.petclinic.model.Visit;
 import dz.chicov.petclinic.services.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class VisitServiceMapImpl extends AbstractServiceMap<Visit, Long> implements VisitService {
 
     @Override
