@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "vets")
 public class Vet extends Person{
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name="vets_specialties",
                joinColumns = @JoinColumn(name= "specialty_id"),
                inverseJoinColumns = @JoinColumn(name ="vet_id"))

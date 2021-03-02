@@ -2,7 +2,6 @@ package dz.chicov.petclinic.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +12,7 @@ public class Pet extends NamedEntity{
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "type_id")
     private PetType petType;
 
