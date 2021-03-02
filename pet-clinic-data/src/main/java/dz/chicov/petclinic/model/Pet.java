@@ -2,6 +2,9 @@ package dz.chicov.petclinic.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pets")
@@ -17,6 +20,9 @@ public class Pet extends NamedEntity{
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private Set<Visit> visits = new HashSet<>();
 
     public LocalDate getBirthDate() {
         return birthDate;
@@ -40,5 +46,23 @@ public class Pet extends NamedEntity{
 
     public void setOwner(Owner owner) {
         this.owner = owner;
+    }
+
+    public Set<Visit> getVisits() {
+        return visits;
+    }
+
+    public Pet addvisit(Visit visit){
+        getVisits().add(visit);
+        return this;
+    }
+
+    public Pet removevisit(Visit visit){
+        getVisits().remove(visit);
+        return this;
+    }
+
+    public void setVisits(Set<Visit> visits) {
+        this.visits = visits;
     }
 }
