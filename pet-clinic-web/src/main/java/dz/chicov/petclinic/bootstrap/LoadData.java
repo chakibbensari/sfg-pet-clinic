@@ -25,8 +25,8 @@ public class LoadData implements CommandLineRunner{
         PetType catPetType = createPetType("CAT");
         PetType dogPetType = createPetType("DOG");
 
-        Owner owner = createOwner("Thompson", "John", "20 rue magnifique", "Paradise", "0610253658");
-        Owner owner1 = createOwner("Shwadrzmûller", "Maximilian", "65 rue awersome", "Paradise", "0613153658");
+        Owner owner = createOwner("Thompson", "John", "20 rue magnifique", "Manchester", "0610253658");
+        Owner owner1 = createOwner("Shwadrzmûller", "Maximilian", "65 rue awersome", "London", "0613153658");
 
         Pet cat = createPet(catPetType, owner);
         Pet dog = createPet(dogPetType, owner1);
