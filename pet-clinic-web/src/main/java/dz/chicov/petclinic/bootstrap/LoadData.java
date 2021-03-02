@@ -3,6 +3,7 @@ package dz.chicov.petclinic.bootstrap;
 import dz.chicov.petclinic.model.*;
 import dz.chicov.petclinic.services.OwnerService;
 import dz.chicov.petclinic.services.VetService;
+import dz.chicov.petclinic.services.VisitService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +14,12 @@ public class LoadData implements CommandLineRunner{
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final VisitService visitService;
 
-    public LoadData(OwnerService ownerService, VetService vetService) {
+    public LoadData(OwnerService ownerService, VetService vetService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -36,6 +39,15 @@ public class LoadData implements CommandLineRunner{
 
         ownerService.save(owner);
         ownerService.save(owner1);
+
+        Visit visit = new Visit();
+        visit.setDate(LocalDate.now());
+        visit.setDescription("Sneezzy Cat");
+        visit.setPet(cat);
+
+        visitService.save(visit);
+
+        System.out.println(visitService.findAll().size() + " Visits Loaded");
 
         System.out.println(ownerService.findAll().size() + " Owners Loaded");
 
