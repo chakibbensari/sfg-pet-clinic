@@ -31,8 +31,8 @@ public class LoadData implements CommandLineRunner{
         Owner owner = createOwner("Thompson", "John", "20 rue magnifique", "Manchester", "0610253658");
         Owner owner1 = createOwner("Shwadrzmûller", "Maximilian", "65 rue awersome", "London", "0613153658");
 
-        Pet cat = createPet(catPetType, owner);
-        Pet dog = createPet(dogPetType, owner1);
+        Pet cat = createPet("PIPO", catPetType, owner);
+        Pet dog = createPet("LAIKA", dogPetType, owner1);
 
         owner.getPets().add(cat);
         owner1.getPets().add(dog);
@@ -40,10 +40,7 @@ public class LoadData implements CommandLineRunner{
         ownerService.save(owner);
         ownerService.save(owner1);
 
-        Visit visit = new Visit();
-        visit.setDate(LocalDate.now());
-        visit.setDescription("Sneezzy Cat");
-        visit.setPet(cat);
+        Visit visit = createVisit(LocalDate.now(), "Sneezy Cat", cat);
 
         visitService.save(visit);
 
@@ -65,6 +62,14 @@ public class LoadData implements CommandLineRunner{
 
     }
 
+    private Visit createVisit(LocalDate date, String description, Pet pet){
+        Visit visit = new Visit();
+        visit.setDate(date);
+        visit.setDescription(description);
+        visit.setPet(pet);
+        return visit;
+    }
+
     private Specialty createSpecialty(String name){
         Specialty specialty = new Specialty();
         specialty.setName(name);
@@ -77,8 +82,9 @@ public class LoadData implements CommandLineRunner{
         return petType;
     }
 
-    private Pet createPet(PetType petType, Owner owner){
+    private Pet createPet(String name,PetType petType, Owner owner){
         Pet pet = new Pet();
+        pet.setName(name);
         pet.setPetType(petType);
         pet.setOwner(owner);
         pet.setBirthDate(LocalDate.of((int)(Math.random() * 21) + 2000,
