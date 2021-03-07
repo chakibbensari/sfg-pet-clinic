@@ -48,6 +48,7 @@ public class OwnerServiceSDImpl implements OwnerService {
 
     @Override
     public Set<Owner> findByFirstName(String firstName) {
-        return null;
+
+        return ownerRepository.findAllByFirstName(firstName);
     }
 }
