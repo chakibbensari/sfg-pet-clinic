@@ -63,56 +63,47 @@ public class LoadData implements CommandLineRunner{
     }
 
     private Visit createVisit(LocalDate date, String description, Pet pet){
-        Visit visit = new Visit();
-        visit.setDate(date);
-        visit.setDescription(description);
-        visit.setPet(pet);
-        return visit;
+        return Visit.builder().date(randomDate())
+                .description(description)
+                .pet(pet)
+                .build();
     }
 
     private Specialty createSpecialty(String name){
-        Specialty specialty = new Specialty();
-        specialty.setName(name);
-        return specialty;
+        return Specialty.builder().name(name).build();
     }
 
     private PetType createPetType(String name){
-        PetType petType = new PetType();
-        petType.setName(name);
-        return petType;
+        return PetType.builder().name(name).build();
     }
 
     private Pet createPet(String name,PetType petType, Owner owner){
-        Pet pet = new Pet();
-        pet.setName(name);
-        pet.setPetType(petType);
-        pet.setOwner(owner);
-        pet.setBirthDate(LocalDate.of((int)(Math.random() * 21) + 2000,
-                                    (int)(Math.random() * 12) + 1,
-                                (int)(Math.random() * 30) + 1));
-        return pet;
+        return Pet.builder().name(name)
+                .petType(petType)
+                .owner(owner)
+                .birthDate(randomDate())
+                .build();
     }
 
     private Vet createVet(String firstName, String lastName){
-        Vet vet = new Vet();
-        createPerson(vet, firstName, lastName);
-        return vet;
+        return Vet.builder().firstName(firstName)
+                .lastName(lastName)
+                .build();
     }
 
     private Owner createOwner(String firstName, String lastName, String address, String city, String telephone){
-        Owner owner = new Owner();
-        owner.setAddress(address);
-        owner.setCity(city);
-        owner.setTelephone(telephone);
-        createPerson(owner,firstName, lastName);
-        return owner;
+        return Owner.builder().firstName(firstName)
+                .lastName(lastName)
+                .address(address)
+                .city(city)
+                .telephone(telephone)
+                .build();
     }
 
-    private void createPerson(Person person, String firstName, String lastName){
-
-        person.setFirstName(firstName);
-        person.setLastName(lastName);
-
-
+    private LocalDate randomDate() {
+        return LocalDate.of((int)(Math.random() * 21) + 2000,
+                (int)(Math.random() * 12) + 1,
+                (int)(Math.random() * 30) + 1);
     }
+
 }

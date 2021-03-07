@@ -1,9 +1,15 @@
 package dz.chicov.petclinic.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "owners")
 public class Owner extends Person{
@@ -20,32 +26,12 @@ public class Owner extends Person{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
+    @Builder
+    public Owner(Long id, String firstName, String lastName, String address, String city, String telephone) {
+        super(id, firstName, lastName);
         this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public Set<Pet> getPets() {
-        return pets;
     }
 
     public Owner addPet(Pet pet){
@@ -56,9 +42,5 @@ public class Owner extends Person{
     public Owner removePet(Pet pet){
         getPets().remove(pet);
         return this;
-    }
-
-    public void setPets(Set<Pet> pets) {
-        this.pets = pets;
     }
 }
