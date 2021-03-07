@@ -7,6 +7,7 @@ import javax.persistence.MappedSuperclass;
 
 @Getter
 @Setter
+@EqualsAndHashCode(of = "id", callSuper = true)
 @NoArgsConstructor
 @MappedSuperclass
 public class NamedEntity extends BaseEntity{

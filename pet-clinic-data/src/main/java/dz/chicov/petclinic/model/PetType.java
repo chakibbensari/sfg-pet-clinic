@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "id", callSuper = true)
 @Entity
 @Table(name = "pet_types")
 public class PetType extends NamedEntity{
