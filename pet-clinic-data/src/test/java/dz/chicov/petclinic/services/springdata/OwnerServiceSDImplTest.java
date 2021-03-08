@@ -5,8 +5,11 @@ import dz.chicov.petclinic.repositories.OwnerRepository;
 import dz.chicov.petclinic.services.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -17,19 +20,22 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class OwnerServiceSDImplTest {
-
-    private OwnerService ownerServiceSDImpl;
 
     @Mock
     private OwnerRepository ownerRepository;
+
+    @InjectMocks
+    private OwnerServiceSDImpl ownerServiceSDImpl;
+
 
     Set<Owner> owners = new HashSet<>();
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-        ownerServiceSDImpl = new OwnerServiceSDImpl(ownerRepository);
+//        MockitoAnnotations.openMocks(this);
+//        ownerServiceSDImpl = new OwnerServiceSDImpl(ownerRepository);
         owners.add(Owner.builder().id(1L).firstName("TEST").build());
     }
 
@@ -51,8 +57,8 @@ class OwnerServiceSDImplTest {
 
     @Test
     void save() {
-        ownerServiceSDImpl.save(owners.iterator().next());
         when(ownerRepository.save(any(Owner.class))).thenReturn(owners.iterator().next());
+        ownerServiceSDImpl.save(owners.iterator().next());
         verify(ownerRepository, times(1)).save(owners.iterator().next());
     }
 

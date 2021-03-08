@@ -11,38 +11,10 @@ import java.util.Set;
 
 @Service
 @Profile("springdata")
-public class SpecialtyServiceSDImpl implements SpecialtyService {
-
-    private final SpecialtyRepository specialtyRepository;
+public class SpecialtyServiceSDImpl extends AbstractServiceSDImpl<Specialty, Long, SpecialtyRepository> implements SpecialtyService {
 
     public SpecialtyServiceSDImpl(SpecialtyRepository specialtyRepository) {
-        this.specialtyRepository = specialtyRepository;
+        super(specialtyRepository);
     }
 
-    @Override
-    public Specialty findById(Long id) {
-        return specialtyRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Set<Specialty> findAll() {
-        Set<Specialty> Specialties = new HashSet<>();
-        specialtyRepository.findAll().forEach(Specialties::add);
-        return Specialties;
-    }
-
-    @Override
-    public Specialty save(Specialty Specialty) {
-        return specialtyRepository.save(Specialty);
-    }
-
-    @Override
-    public void delete(Specialty Specialty) {
-        specialtyRepository.delete(Specialty);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        specialtyRepository.deleteById(id);
-    }
 }

@@ -8,5 +8,5 @@ import java.util.Set;
 
 public interface OwnerRepository extends CrudRepository<Owner, Long> {
 
-    public Set<Owner> findAllByFirstName(String firstName);
+    public Iterable<Owner> findAllByFirstName(String firstName);
 }

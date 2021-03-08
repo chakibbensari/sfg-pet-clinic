@@ -11,44 +11,16 @@ import java.util.Set;
 
 @Service
 @Profile("springdata")
-public class OwnerServiceSDImpl implements OwnerService {
-
-    private OwnerRepository ownerRepository;
+public class OwnerServiceSDImpl extends AbstractServiceSDImpl<Owner, Long, OwnerRepository> implements OwnerService {
 
     public OwnerServiceSDImpl(OwnerRepository ownerRepository) {
-        this.ownerRepository = ownerRepository;
-    }
-
-    @Override
-    public Owner findById(Long id) {
-        return ownerRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Set<Owner> findAll() {
-        Set<Owner> owners = new HashSet<>();
-        ownerRepository.findAll().forEach(owners::add);
-        return owners;
-    }
-
-    @Override
-    public Owner save(Owner owner) {
-        return ownerRepository.save(owner);
-    }
-
-    @Override
-    public void delete(Owner owner) {
-        ownerRepository.delete(owner);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        ownerRepository.deleteById(id);
+        super(ownerRepository);
     }
 
     @Override
     public Set<Owner> findByFirstName(String firstName) {
-
-        return ownerRepository.findAllByFirstName(firstName);
+        Set<Owner> set = new HashSet<>();
+        super.repository.findAllByFirstName(firstName).forEach(set::add);
+        return set;
     }
 }

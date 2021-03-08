@@ -11,43 +11,16 @@ import java.util.Set;
 
 @Service
 @Profile("springdata")
-public class VetServiceSDImpl implements VetService {
-
-    private VetRepository vetRepository;
+public class VetServiceSDImpl extends AbstractServiceSDImpl<Vet, Long, VetRepository>implements VetService {
 
     public VetServiceSDImpl(VetRepository vetRepository) {
-        this.vetRepository = vetRepository;
-    }
-
-    @Override
-    public Vet findById(Long id) {
-        return vetRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Set<Vet> findAll() {
-        Set<Vet> vets = new HashSet<>();
-        vetRepository.findAll().forEach(vets::add);
-        return vets;
-    }
-
-    @Override
-    public Vet save(Vet vet) {
-        return vetRepository.save(vet);
-    }
-
-    @Override
-    public void delete(Vet vet) {
-        vetRepository.delete(vet);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        vetRepository.deleteById(id);
+        super(vetRepository);
     }
 
     @Override
     public Set<Vet> findByFirstName(String firstName) {
-        return vetRepository.findAllByFirstName(firstName);
+        Set<Vet> set = new HashSet<>();
+        super.repository.findAllByFirstName(firstName).forEach(set::add);
+        return set;
     }
 }
